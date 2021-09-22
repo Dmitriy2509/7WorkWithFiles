@@ -1,0 +1,46 @@
+plugins {
+    id 'java'
+    id "io.qameta.allure" version "2.8.1" //It's needed to set up allure
+}
+
+
+group 'ExampleGradle'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.11
+
+repositories {
+    mavenCentral()
+}
+
+compileTestJava {
+    options.encoding = 'UTF-8' //It's needed to show text correct instead of symbols
+}
+
+allure{
+    //This block is needed to set up allure
+    version = "2.15.0"
+    autoconfigure =true
+
+    useJUnit5 {
+        version = "2.15.0"
+    }
+}
+
+dependencies {
+    testImplementation (
+            "com.codeborne:selenide:5.20.3",
+            "org.junit.jupiter:junit-jupiter-api:5.7.1",
+            "com.codeborne:pdf-test:1.6.1",
+            "com.codeborne:xls-test:1.4.3",
+            "com.opencsv:opencsv:5.3",
+            "org.assertj:assertj-core:3.19.0",
+            "net.lingala.zip4j:zip4j:2.9.0")
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.7.1"
+    implementation 'com.github.javafaker:javafaker:1.0.2'
+    implementation group: 'net.lingala.zip4j', name: 'zip4j', version: '1.2.4'
+}
+
+test {
+    useJUnitPlatform()
+}
