@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -13,7 +15,7 @@ public class ContentFilesTest {
 
     @Test
     void checkContentTxtFile() throws Exception {
-        File txtFile = new File("src/txtExample.txt");
+        File txtFile = new File("src/test/resources/txtExample.txt");
         String parsedTxt;
 
         try (InputStream is = new FileInputStream(txtFile)) {
@@ -25,7 +27,7 @@ public class ContentFilesTest {
 
     @Test
     void checkContentPdfFile() throws Exception {
-        PDF pdfParsed = new PDF(new File("src/junit-user-guide-5.8.0.pdf"));
+        PDF pdfParsed = new PDF(new File("src/test/resources/junit-user-guide-5.8.0.pdf"));
         assertThat(pdfParsed.text).contains("JUnit 5 User Guide");
     }
 
